@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="mark" aria-hidden="true"></div>
+    <div>
+      <h1>Token Launch Radar</h1>
+      <p class="tagline">Protocols that record no token yet, ranked by what a launch would be worth if it priced like their category.</p>
+    </div>
+  </div>
+  <div class="stats" id="stats" aria-label="Snapshot statistics"></div>
+</header>
+
+<section class="method" id="method" aria-label="How implied values are derived">
+  <h2>How the implied values are derived</h2>
+  <p id="method-text"></p>
+  <div class="ratios" id="ratios" aria-label="Category valuation ratios"></div>
+</section>
+
+<section class="controls" aria-label="Board controls">
+  <label class="ctl grow">Search
+    <input id="q" type="search" placeholder="Protocol name, slug or chain…" autocomplete="off">
+  </label>
+  <label class="ctl">Category
+    <select id="cat"></select>
+  </label>
+  <label class="ctl">Sort by
+    <select id="sort">
+      <option value="rank">Implied value (board rank)</option>
+      <option value="tvl">TVL, high to low</option>
+      <option value="chg">7-day change, high to low</option>
+      <option value="age">Track record, longest first</option>
+      <option value="mult">Value multiple of TVL</option>
+    </select>
+  </label>
+  <label class="ctl check">
+    <input id="wl" type="checkbox"> Watchlist only
+  </label>
+  <span class="count" id="count" role="status"></span>
+</section>
+
+<main>
+  <table class="board" id="board">
+    <thead>
+      <tr>
+        <th class="num" data-sort="rank">#</th>
+        <th data-sort="name">Protocol</th>
+        <th>Category</th>
+        <th class="num">Chains</th>
+        <th class="num" data-sort="tvl">TVL</th>
+        <th class="num" data-sort="chg">7d %</th>
+        <th class="num" data-sort="rank">Implied value</th>
+        <th class="bar-cell">Value vs TVL</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No protocol matches the current filter. Loosen the search or pick another category.</p>
+</main>
+
+<footer class="foot">
+  <p><strong>Reading the board.</strong> “Records no token” is the snapshot’s statement, not a claim about the
+  world: DefiLlama’s record can lag a launch, and a versioned deployment of a protocol whose token already
+  trades is kept off the board by the same rule that built the watchlist. An implied value is this model’s
+  claim about what a token would be worth if the protocol’s record stayed as it is — not a prediction that
+  a token will be issued. Farm plans are starting points for your own research, not financial advice.</p>
+</footer>
+
+<aside class="drawer" id="drawer" hidden aria-label="Protocol detail">
+  <button class="close" id="close" aria-label="Close detail view">×</button>
+  <div id="detail"></div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
